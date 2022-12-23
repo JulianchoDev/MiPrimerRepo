@@ -2,14 +2,16 @@
   "name": "google-apps-script-starter",
   "private": true,
   "scripts": {
+    "dev": "concurrently \"npm run build:watch\" \"npm run push:watch\" --raw --kill-others",
+    "deploy": "npm run build && npm run push",
     "build": "webpack --mode none",
     "build:watch": "npm run build -- --watch",
     "push": "clasp push --force",
     "push:watch": "npm run push -- --watch",
-    "deploy": "npm run build && npm run push",
-    "dev": "concurrently \"npm run build:watch\" \"npm run push:watch\" --raw --kill-others",
+    "set-env": "cp .env-template .env ",
+    "init": "node node.js",
     "login": "clasp login",
-    "test": "jest"
+    "test": "jest --watch"
   },
   "devDependencies": {
     "@google/clasp": "^2.3.0",
@@ -19,6 +21,7 @@
     "clean-webpack-plugin": "^4.0.0",
     "concurrently": "^6.2.1",
     "copy-webpack-plugin": "^10.0.0",
+    "dotenv": "^16.0.3",
     "gas-webpack-plugin": "^2.1.0",
     "jest": "^27.1.0",
     "prettier": "^2.0.5",
