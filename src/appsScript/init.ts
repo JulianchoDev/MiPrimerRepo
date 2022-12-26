@@ -1,10 +1,6 @@
-import { tf, onOpen } from "./customFunctions";
-
 const init = (globalThis: object) => {
   const customGlobalProperties = {
-    tf: tf,
     lov: 12,
-    onOpen: onOpen,
   };
 
   for (const prop in customGlobalProperties) {

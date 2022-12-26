@@ -1,4 +1,4 @@
-import { multiply } from './utils';
+import { multiply } from './testFunction';
 
 describe('multiply', () => {
   it('should perform a multiplication', () => {
