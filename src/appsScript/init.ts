@@ -1,4 +1,4 @@
-import { tf, onOpen } from './appsScript/tf';
+import { tf, onOpen } from "./customFunctions";
 
 const init = (globalThis: object) => {
   const customGlobalProperties = {
