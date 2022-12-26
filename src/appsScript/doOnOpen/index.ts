@@ -1,9 +1,6 @@
-import initMenuActions from './initMenuActions';
 import menuItems from './menuItems';
 
-const doOnOpen = (globalThis: any) => {
-  initMenuActions(globalThis);
-
+const doOnOpen = () => {
   const ui = SpreadsheetApp.getUi();
   const tolamenu = ui.createMenu('tolá');
 

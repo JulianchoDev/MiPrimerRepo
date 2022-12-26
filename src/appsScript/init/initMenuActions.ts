@@ -1,18 +1,20 @@
-const initMenuActions = (globalThis: any) => {
+const initMenuActions = (globalObject: any) => {
+  if (!globalObject)
+    throw new Error('globalThis must be given to initMenuActions as argument');
   const menuActionsKeys = Object.keys(menuActions) as MenuActionsKeys[];
 
   menuActionsKeys.forEach((menuActionKey) => {
-    globalThis[menuActionKey] = menuActions[menuActionKey];
+    globalObject[menuActionKey] = menuActions[menuActionKey];
   });
 };
 export default initMenuActions;
 
 const menuActions = {
   cleaner: function () {
-    return;
+    return 123;
   },
   logger: function () {
-    return;
+    throw new Error('This is a test error');
   },
 };
 

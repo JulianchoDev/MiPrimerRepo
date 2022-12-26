@@ -1,4 +1,4 @@
-import { MenuActionsKeys } from './initMenuActions';
+import { MenuActionsKeys } from '../init/initMenuActions';
 
 type MenuItems = {
   [Property in MenuActionsKeys]: [title: string, functionName: MenuActionsKeys];
