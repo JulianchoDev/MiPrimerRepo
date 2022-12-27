@@ -2,7 +2,7 @@
 
 The base setup of this project is explained in the following [blog post](https://david-barreto.com/google-app-script-local-development-tutorial/).
 
-They started project is in [this repository](https://github.com/barretodavid/google-apps-script-starter).
+The started project is in [this repository](https://github.com/barretodavid/google-apps-script-starter).
 
 ## Development environment set up
 
@@ -20,7 +20,7 @@ npm i @google/clasp -g
 clasp login
 ```
 
-3.  Make sure to have the [Google Apps Script API setting](https://script.google.com/home/usersettings) `ON`
+3.  Make sure to have the [Google Apps Script API setting](https://script.google.com/home/usersettings) set to `ON`
 
 4.  Create an Apps Script project using your account. You can do it [from here](https://script.google.com/home) or following [these instructions](https://developers.google.com/apps-script/guides/projects?hl=en)
 
@@ -63,7 +63,7 @@ npm run deploy
 1. Duplicate [this sheets template file](https://docs.google.com/spreadsheets/d/16JH8oNQzK0NUmwslS21Z3WnpvirJCWg8NVTe2k6kjVI/edit#gid=1982867521) (make sure you have editor permissions)
 2. Open the Apps Script project linked to the duplicated sheets file
 3. Add the initially created Apps Script project (the one created in the section above) as library to the duplicated sheets file. Make sure to set `HEAD (Development mode)` as `version` and `tm` as the `library identifier`
-4. Add this code snippet in the Sheets Apps Script `Code.gs` file
+4. Add this code snippet in the Sheets Apps Script `Code.gs` file:
 
 ```js
 tm.init(globalThis);
@@ -77,7 +77,7 @@ function tf(functionName, ...functionArgs) {
 }
 ```
 
-5. You can now test that the sheets file and the Apps Script project are correctly linked by using the following formula in any sheet cell, it would return `Success`
+5. You can now test that the sheets file and the Apps Script project are correctly linked by using the following formula in any sheet cell, it would return `Success!!`
 
 ```shell
 =tf("test")
