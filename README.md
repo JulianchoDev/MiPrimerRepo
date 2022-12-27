@@ -20,16 +20,17 @@ npm i @google/clasp -g
 clasp login
 ```
 
-4.  Create an Apps Script project using your account. You can do it [from here](https://script.google.com/home) or following [these instructions](https://developers.google.com/apps-script/guides/projects?hl=en)
-5.  Make sure to have the [Google Apps Script API setting](https://script.google.com/home/usersettings) `ON`
+3.  Make sure to have the [Google Apps Script API setting](https://script.google.com/home/usersettings) `ON`
 
-6.  Clone this repository in your local machine. In the folder in which you want to have the repo, run:
+4.  Create an Apps Script project using your account. You can do it [from here](https://script.google.com/home) or following [these instructions](https://developers.google.com/apps-script/guides/projects?hl=en)
+
+5.  Clone this repository in your local machine. In the folder in which you want to have the repo, run:
 
 ```shell
 git clone [this repo url]
 ```
 
-5. Install project dependencies
+6. Install project dependencies
 
 ```shell
 npm i
@@ -42,13 +43,14 @@ npm run set-env
 ```
 
 7. Copy the Apps Script project ID (you can get it in the "Project Settings" section in the left sidebar) and set it as the value for the `CLASP_SCRIPT_ID` environment variable in the `.env` file in the root of the project
-8. Run
+
+8. Run the following command to create the appropriate `.clasp.json` file
 
 ```shell
 npm run init
 ```
 
-9. Run
+9. Run, to push local project to remote Apps Script project
 
 ```shell
 npm run deploy
@@ -58,24 +60,21 @@ npm run deploy
 
 ## Testing code
 
-1. Duplicate [this](https://docs.google.com/spreadsheets/d/16JH8oNQzK0NUmwslS21Z3WnpvirJCWg8NVTe2k6kjVI/edit#gid=1982867521) sheets template file (make sure you have editor permissions)
+1. Duplicate [this sheets template file](https://docs.google.com/spreadsheets/d/16JH8oNQzK0NUmwslS21Z3WnpvirJCWg8NVTe2k6kjVI/edit#gid=1982867521) (make sure you have editor permissions)
 2. Open the Apps Script project linked to the duplicated sheets file
-3. Add the initially created Apps Script project (the one created in the section above) as library to the duplicated sheets file. Make sure to set `HEAD (Development mode)` as version and `tm` as the library identifier
-4. Add this code snippet in the sheets Apps Script `Code.gs` file
+3. Add the initially created Apps Script project (the one created in the section above) as library to the duplicated sheets file. Make sure to set `HEAD (Development mode)` as `version` and `tm` as the `library identifier`
+4. Add this code snippet in the Sheets Apps Script `Code.gs` file
 
 ```js
-// Adds menu actions to globalThis so they are available to use in custom menus
-tm.initMenuActions(globalThis);
+tm.init(globalThis);
 
 function onOpen() {
-  // Adds custom menu to UI
   tm.doOnOpen();
 }
 
-// tf: tolá function
-const tf = (funcName, ...args) => {
-  return tm.functionsReducer(funcName, ...args);
-};
+function tf(functionName, ...functionArgs) {
+  return tm.doFunction(functionName, ...functionArgs);
+}
 ```
 
 5. You can now test that the sheets file and the Apps Script project are correctly linked by using the following formula in any sheet cell, it would return `Success`

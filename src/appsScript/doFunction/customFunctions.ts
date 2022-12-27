@@ -14,9 +14,8 @@ const customFunctions = {
 
     if (targetSheet) return targetSheet.getSheetId();
   },
-  test: function (a: string, b: string) {
-    if (!a || !b) throw new Error('Arguments are needed');
-    return 'Success!! ' + a + b;
+  test: function () {
+    return 'Success!!';
   },
 };
 export default customFunctions;
