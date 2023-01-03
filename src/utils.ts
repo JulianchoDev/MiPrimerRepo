@@ -12,7 +12,7 @@ export const getSheetName = (sheetID: number) => {
   return targetSheet.getSheetName();
 };
 
-export const getSheetID = (sheetName: string) => {
+export const getSheetId = (sheetName: string) => {
   if (typeof sheetName !== 'string')
     throw new Error('Sheet name must be a string');
 
