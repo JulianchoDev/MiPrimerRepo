@@ -1,4 +1,4 @@
-import { getSheetName } from '../../utils';
+import { getSheetName, getSheetId } from '../../utils';
 
 /**
  * All functions specified in this object must validate the arguments given.
@@ -7,13 +7,7 @@ import { getSheetName } from '../../utils';
  */
 const customFunctions = {
   getSheetName: getSheetName,
-  getSheetId: function (sheetName: string) {
-    const ss = SpreadsheetApp.getActiveSpreadsheet();
-
-    const targetSheet = ss.getSheetByName(sheetName);
-
-    if (targetSheet) return targetSheet.getSheetId();
-  },
+  getSheetId: getSheetId,
   test: function () {
     return 'Success!!';
   },

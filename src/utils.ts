@@ -13,3 +13,20 @@ export const getSheetName = (sheetID: number) => {
 
   return targetSheet.getSheetName();
 };
+
+export const getSheetId = (sheetName: string) => {
+  if (typeof sheetName !== 'string')
+    throw new Error('Sheet name must be a string');
+
+  const ss = SpreadsheetApp.getActiveSpreadsheet();
+
+  const targetSheet = ss
+    .getSheets()
+    .filter((s) => s.getSheetName() === sheetName)[0];
+
+  if (!targetSheet) {
+    throw new Error('Sheet name does not exist');
+  }
+
+  return targetSheet.getSheetId();
+};
