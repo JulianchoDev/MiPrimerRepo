@@ -9,7 +9,7 @@
     "push": "clasp push --force",
     "push:watch": "npm run push -- --watch",
     "set-env": "cp .env-template .env ",
-    "init": "node node.js",
+    "init": "node init.js",
     "login": "clasp login",
     "test": "jest --watch"
   },
