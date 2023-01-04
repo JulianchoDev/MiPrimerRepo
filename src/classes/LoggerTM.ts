@@ -1,1 +1,3 @@
-class LoggerTM {}
+class LoggerTM {
+  constructor() {}
+}
