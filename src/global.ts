@@ -4,7 +4,7 @@ import init from './appsScript/init';
 
 import dataArrayToObjects from './utils/dataArrayToObjects';
 import LoggerSheetItem from './classes/types/loggerSheetItem';
-import getSheetDataInObject from './utils/getSheetDataInObject';
+import getSheetDataInObject from './utils/getSheetDataInObjects';
 
 (global as any).test = () => {
   // const objectsArr = dataArrayToObjects<LoggerSheetItem>(arrayTest);
