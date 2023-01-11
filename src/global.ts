@@ -4,7 +4,7 @@ import init from './appsScript/init';
 
 import dataArrayToObjects from './utils/dataArrayToObjects';
 import LoggerSheetItem from './classes/types/loggerSheetItem';
-import getSheetDataInObject from './utils/getSheetDataInObjects';
+import getSheetDataInObjects from './utils/getSheetDataInObjects';
 
 (global as any).test = () => {
   // const objectsArr = dataArrayToObjects<LoggerSheetItem>(arrayTest);
@@ -12,7 +12,7 @@ import getSheetDataInObject from './utils/getSheetDataInObjects';
 
   const cleanerSheet =
     SpreadsheetApp.getActiveSpreadsheet().getSheetByName('cleaner');
-  console.log(getSheetDataInObject(cleanerSheet));
+  console.log(getSheetDataInObjects(cleanerSheet));
 };
 
 const arrayTest = [
