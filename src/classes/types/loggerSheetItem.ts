@@ -1,7 +1,7 @@
 interface LoggerSheetItem {
   originId: number;
   targetId: number;
-  run: 0 | 1;
+  include: 0 | 1;
   originName: string;
   originFromColumn: number;
   originToColumn: number;
