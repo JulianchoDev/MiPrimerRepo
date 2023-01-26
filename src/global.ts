@@ -5,14 +5,18 @@ import init from './appsScript/init';
 import dataArrayToObjects from './utils/dataArrayToObjects';
 import LoggerSheetItem from './classes/types/loggerSheetItem';
 import getSheetDataInObjects from './utils/getSheetDataInObjects';
+import LoggerTM from './classes/LoggerTM';
 
 (global as any).test = () => {
   // const objectsArr = dataArrayToObjects<LoggerSheetItem>(arrayTest);
   // console.log(objectsArr, objectsArr[0]);
 
-  const cleanerSheet =
-    SpreadsheetApp.getActiveSpreadsheet().getSheetByName('cleaner');
-  console.log(getSheetDataInObjects(cleanerSheet));
+  // const cleanerSheet =
+  //   SpreadsheetApp.getActiveSpreadsheet().getSheetByName('cleaner');
+  // console.log(getSheetDataInObjects(cleanerSheet));
+
+  // const loggerTest = new LoggerTM();
+  console.log('loggerTest.loggerDataInObjects');
 };
 
 const arrayTest = [

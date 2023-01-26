@@ -1,6 +1,6 @@
 import getSheetName from '../../utils/getSheetName';
 import getSheetId from '../../utils/getSheetId';
-import test from '../../utils/test';
+import formulaTest from '../../utils/formulaTest';
 /**
  * All functions specified in this object must validate the arguments given.
  * If arguments are not validated and errors are not handled,
@@ -9,7 +9,7 @@ import test from '../../utils/test';
 const customFunctions = {
   getSheetName: getSheetName,
   getSheetId: getSheetId,
-  test: test,
+  test: formulaTest,
 };
 export default customFunctions;
 

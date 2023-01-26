@@ -24,3 +24,5 @@ class LoggerTM {
     const dataRange = getSheetData(sheetItem.originName).dataSheetRange;
   }
 }
+
+export default LoggerTM;
