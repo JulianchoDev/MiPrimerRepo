@@ -76,19 +76,14 @@ export const getSheetValues = (
   if (sheetRange === undefined) return;
 
   const sheetValues = sheetObject
-    .getRange(
-      sheetRange.startRow,
-      sheetRange.startColumn,
-      sheetRange.finalRow,
-      sheetRange.finalColumn
-    )
+    .getRange(sheetRange[0], sheetRange[1], sheetRange[2], sheetRange[3])
     .getValues();
 
   return sheetValues;
 };
 
 /**
- * @returns object with a sheet coordinates
+ * @returns an array with a sheet coordinates
  */
 export const getSheetRange = (
   sheetObject: GoogleAppsScript.Spreadsheet.Sheet | null,
@@ -112,12 +107,7 @@ export const getSheetRange = (
   const finalRow = sheetRangeRows ? sheetRangeRows : sheetLastRow;
   const finalColumn = endColumn ? endColumn : sheetLastColumn;
 
-  const finalRange = {
-    startRow,
-    startColumn,
-    finalRow,
-    finalColumn,
-  };
+  const finalRange = [startRow, startColumn, finalRow, finalColumn];
 
   return finalRange;
 };
