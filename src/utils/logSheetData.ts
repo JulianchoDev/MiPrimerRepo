@@ -8,11 +8,12 @@ const logSheetData = (
   dataArray: (string | number)[][],
   range: SheetRange
 ) => {
-  const limitToPaste = targetSheet?.getLastRow();
+  const targetSheetLastRow = targetSheet?.getLastRow();
 
-  //range()
+  //dataArray.slice para eliminar el primer item del array
+
   targetSheet
-    ?.getRange(limitToPaste! + 1, 1, range[2], range[3])
+    ?.getRange(targetSheetLastRow! + 1, 1, range[2], range[3])
     .setValues(dataArray);
 };
 

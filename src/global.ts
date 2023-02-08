@@ -20,12 +20,7 @@ import resetSheetFormulas from './utils/resetSheetFormulas';
   const loggerSheet =
     SpreadsheetApp.getActiveSpreadsheet().getSheetByName('logger');
   const loggerSheetTest = getSheetDataInObjects<LoggerSheetItem>(loggerSheet);
-  //console.log(loggerTest.makeSingleLog(loggerSheetTest![0]));
-  console.log(
-    SpreadsheetApp.getActiveSpreadsheet()
-      .getSheetByName('current')
-      ?.getLastRow()
-  );
+  console.log(loggerTest.makeSingleLog(loggerSheetTest![0]));
 };
 
 const loggerSheet1 = {
