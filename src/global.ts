@@ -2,10 +2,10 @@ import doOnOpen from './appsScript/doOnOpen';
 import doFunction from './appsScript/doFunction';
 import init from './appsScript/init';
 
-import dataArrayToObjects from './utils/dataArrayToObjects';
+import getSheetData, { getSheetDataInObjects } from './utils/getSheetData';
 import LoggerSheetItem from './classes/types/loggerSheetItem';
-import getSheetDataInObjects from './utils/getSheetDataInObjects';
 import LoggerTM from './classes/LoggerTM';
+import resetSheetFormulas from './utils/resetSheetFormulas';
 
 (global as any).test = () => {
   // const objectsArr = dataArrayToObjects<LoggerSheetItem>(arrayTest);
@@ -15,8 +15,28 @@ import LoggerTM from './classes/LoggerTM';
   //   SpreadsheetApp.getActiveSpreadsheet().getSheetByName('cleaner');
   // console.log(getSheetDataInObjects(cleanerSheet));
 
-  // const loggerTest = new LoggerTM();
-  console.log('loggerTest.loggerDataInObjects');
+  // const test = SpreadsheetApp.getActiveSpreadsheet().getSheetByName('test');
+  const loggerTest = new LoggerTM();
+  const loggerSheet =
+    SpreadsheetApp.getActiveSpreadsheet().getSheetByName('logger');
+  const loggerSheetTest = getSheetDataInObjects<LoggerSheetItem>(loggerSheet);
+  //console.log(loggerTest.makeSingleLog(loggerSheetTest![0]));
+  console.log(
+    SpreadsheetApp.getActiveSpreadsheet()
+      .getSheetByName('current')
+      ?.getLastRow()
+  );
+};
+
+const loggerSheet1 = {
+  originId: 0,
+  targetId: 621361723,
+  include: 1,
+  originName: 'current',
+  originFromColumn: 1,
+  originToColumn: 9,
+  originLastRow: 20,
+  targetName: 'history',
 };
 
 const arrayTest = [
