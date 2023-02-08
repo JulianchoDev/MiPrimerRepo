@@ -1,4 +1,5 @@
 import LoggerSheetItem from '../classes/types/loggerSheetItem';
+import SheetRange from '../types/sheetRange';
 import dataArrayToObjects from './dataArrayToObjects';
 const getSheetData = <SheetItemType extends object>(sheetName: string) => {
   const sheetObject =
@@ -32,7 +33,7 @@ export default getSheetData;
       target_last_row: 11,
       clean: 18 } ]
  */
-const getSheetDataInObjects = <SheetItemType extends object>(
+export const getSheetDataInObjects = <SheetItemType extends object>(
   sheetObject: GoogleAppsScript.Spreadsheet.Sheet | null
 ) => {
   if (sheetObject === null) return;
@@ -75,9 +76,7 @@ export const getSheetValues = (
   const sheetRange = getSheetRange(sheetObject);
   if (sheetRange === undefined) return;
 
-  const sheetValues = sheetObject
-    .getRange(sheetRange[0], sheetRange[1], sheetRange[2], sheetRange[3])
-    .getValues();
+  const sheetValues = sheetObject.getRange(...sheetRange).getValues();
 
   return sheetValues;
 };
@@ -89,7 +88,7 @@ export const getSheetRange = (
   sheetObject: GoogleAppsScript.Spreadsheet.Sheet | null,
   endColumn?: number,
   numberOfHeaders = 0
-) => {
+): SheetRange | undefined => {
   if (sheetObject === null) return;
 
   const sheetLastRow = sheetObject.getLastRow();
@@ -107,7 +106,12 @@ export const getSheetRange = (
   const finalRow = sheetRangeRows ? sheetRangeRows : sheetLastRow;
   const finalColumn = endColumn ? endColumn : sheetLastColumn;
 
-  const finalRange = [startRow, startColumn, finalRow, finalColumn];
+  const finalRange = [
+    startRow,
+    startColumn,
+    finalRow,
+    finalColumn,
+  ] as SheetRange;
 
   return finalRange;
 };
