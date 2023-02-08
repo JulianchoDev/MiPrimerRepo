@@ -1,4 +1,4 @@
-interface cleanerSheetItem {
+interface CleanerSheetItem {
   targetId: number;
   run: 0 | 1;
   targetName: string;
