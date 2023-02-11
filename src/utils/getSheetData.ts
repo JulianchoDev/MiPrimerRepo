@@ -95,7 +95,7 @@ export const getSheetRange = (
   const sheetLastColumn = sheetObject.getLastColumn();
   const sheetFirstColumnRange: [number, number, number, number] = [
     1,
-    2,
+    1,
     sheetLastRow,
     1,
   ];

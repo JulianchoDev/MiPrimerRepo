@@ -5,16 +5,15 @@ import { getRowsCount } from './getSheetData';
  * Copys values from one sheet on another
  */
 const logSheetData = (
-  targetSheet: GoogleAppsScript.Spreadsheet.Sheet | null,
-  dataArray: (string | number)[][],
-  range: SheetRange
+  targetSheet: GoogleAppsScript.Spreadsheet.Sheet,
+  originData: (string | number)[][],
+  targetRange: SheetRange
 ) => {
-  dataArray.shift();
-  const targetSheetLastRow = getRowsCount(targetSheet, range);
+  const targetSheetLastRow = getRowsCount(targetSheet, targetRange);
 
   targetSheet
-    ?.getRange(targetSheetLastRow! + 1, 1, range[2], range[3])
-    .setValues(dataArray);
+    ?.getRange(targetSheetLastRow! + 1, 1, originData.length)
+    .setValues(originData);
 };
 
 export default logSheetData;

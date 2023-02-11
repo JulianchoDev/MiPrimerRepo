@@ -22,7 +22,7 @@ import resetSheetFormulas from './utils/resetSheetFormulas';
   const loggerSheet =
     SpreadsheetApp.getActiveSpreadsheet().getSheetByName('logger');
   const loggerSheetTest = getSheetDataInObjects<LoggerSheetItem>(loggerSheet);
-  console.log(loggerTest.makeSingleLog(loggerSheetTest![0]));
+  loggerTest.makeSingleLog(loggerSheetTest![0]);
 
   /*const sheetTest =
     SpreadsheetApp.getActiveSpreadsheet().getSheetByName('current');

@@ -28,8 +28,11 @@ class LoggerTM {
     console.log(originValues);
     const targetSheet = ss.getSheetByName(sheetItem.targetName);
 
-    const dataRange = getSheetData(sheetItem.originName).dataSheetRange;
-    logSheetData(targetSheet, originValues!, dataRange!);
+    const dataRange = getSheetData(sheetItem.targetName).dataSheetRange;
+    originValues?.shift();
+    console.log('dataRange', dataRange);
+    console.log('originValues', originValues);
+    logSheetData(targetSheet!, originValues!, dataRange!);
     resetSheetFormulas(originSheet, dataRange!);
   }
 }
