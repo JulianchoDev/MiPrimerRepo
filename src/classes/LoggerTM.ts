@@ -25,6 +25,7 @@ class LoggerTM {
   makeSingleLog(sheetItem: LoggerSheetItem) {
     const originSheet = ss.getSheetByName(sheetItem.originName);
     const originValues = getSheetData(sheetItem.originName).sheetValues;
+    console.log(originValues);
     const targetSheet = ss.getSheetByName(sheetItem.targetName);
 
     const dataRange = getSheetData(sheetItem.originName).dataSheetRange;

@@ -1,4 +1,5 @@
 import SheetRange from '../types/sheetRange';
+import { getRowsCount } from './getSheetData';
 
 /**
  * Copys values from one sheet on another
@@ -8,9 +9,8 @@ const logSheetData = (
   dataArray: (string | number)[][],
   range: SheetRange
 ) => {
-  const targetSheetLastRow = targetSheet?.getLastRow();
-
-  //dataArray.slice para eliminar el primer item del array
+  dataArray.shift();
+  const targetSheetLastRow = getRowsCount(targetSheet, range);
 
   targetSheet
     ?.getRange(targetSheetLastRow! + 1, 1, range[2], range[3])
