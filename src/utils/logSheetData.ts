@@ -1,19 +1,24 @@
 import SheetRange from '../types/sheetRange';
-import { getRowsCount } from './getSheetData';
+import SheetData from '../classes/SheetData';
 
 /**
- * Copys values from one sheet on another
+ * Copies given values to target sheet
  */
 const logSheetData = (
+  originValues: (string | number)[][],
   targetSheet: GoogleAppsScript.Spreadsheet.Sheet,
-  originData: (string | number)[][],
-  targetRange: SheetRange
+  targetStartColumn: number
 ) => {
-  const targetSheetLastRow = getRowsCount(targetSheet, targetRange);
+  const targetSheetData = new SheetData(targetSheet);
 
-  targetSheet
-    ?.getRange(targetSheetLastRow! + 1, 1, originData.length)
-    .setValues(originData);
+  const targetDataRange: SheetRange = [
+    targetSheetData.getLastRow(targetStartColumn) + 1,
+    targetStartColumn,
+    originValues.length,
+    originValues[0].length,
+  ];
+
+  targetSheet.getRange(...targetDataRange).setValues(originValues);
 };
 
 export default logSheetData;

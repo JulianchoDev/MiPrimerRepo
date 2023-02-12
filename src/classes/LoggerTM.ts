@@ -1,39 +1,45 @@
 import LoggerSheetItem from './types/loggerSheetItem';
-import getSheetData from '../utils/getSheetData';
-import { ss } from '../utils/constants';
-import resetSheetFormulas from '../utils/resetSheetFormulas';
+import SheetData from './SheetData';
+import ss from '../utils/SpreadsheetApp';
 import logSheetData from '../utils/logSheetData';
 
 class LoggerTM {
   loggerDataInObjects;
   constructor() {
-    const loggerSheetData = getSheetData<LoggerSheetItem>('logger');
-    if (typeof loggerSheetData.dataInObjects === 'undefined') return;
-    this.loggerDataInObjects = loggerSheetData.dataInObjects;
+    const loggerSheet = ss.getSheetByName('logger');
+    if (!loggerSheet) return;
+
+    const loggerSheetData = new SheetData(loggerSheet);
+    this.loggerDataInObjects = loggerSheetData
+      .getRange()
+      .getDataInObjects<LoggerSheetItem>();
   }
 
   logAll() {
     this.loggerDataInObjects?.forEach((item) => {
       this.makeSingleLog(item);
+      console.log('done1');
     });
   }
 
-  //copy data form origin
-  //paste data to target
-  //reset data in origin
+  makeSingleLog(loggerItem: LoggerSheetItem) {
+    const originSheet = ss.getSheetByName(loggerItem.originName);
+    const targetSheet = ss.getSheetByName(loggerItem.targetName);
 
-  makeSingleLog(sheetItem: LoggerSheetItem) {
-    const originSheet = ss.getSheetByName(sheetItem.originName);
-    const originValues = getSheetData(sheetItem.originName).sheetValues;
-    console.log(originValues);
-    const targetSheet = ss.getSheetByName(sheetItem.targetName);
+    if (!originSheet || !targetSheet) return;
 
-    const dataRange = getSheetData(sheetItem.targetName).dataSheetRange;
-    originValues?.shift();
-    console.log('dataRange', dataRange);
-    console.log('originValues', originValues);
-    logSheetData(targetSheet!, originValues!, dataRange!);
-    resetSheetFormulas(originSheet, dataRange!);
+    const originSheetData = new SheetData(originSheet);
+
+    const originValues = originSheetData
+      .getRange(
+        loggerItem.originStartRow,
+        loggerItem.originStartColumn,
+        loggerItem.originEndColumn
+      )
+      .getValues();
+
+    logSheetData(originValues, targetSheet, loggerItem.targetStartColumn);
+    // reset origin formulas
   }
 }
 

@@ -3,9 +3,10 @@ interface LoggerSheetItem {
   targetId: number;
   include: 0 | 1;
   originName: string;
-  originFromColumn: number;
-  originToColumn: number;
-  originLastRow: number;
+  originStartRow: number;
+  originStartColumn: number;
+  originEndColumn: number;
   targetName: string;
+  targetStartColumn: number;
 }
 export default LoggerSheetItem;

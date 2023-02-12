@@ -3,7 +3,7 @@
  */
 
 const resetSheetFormulas = (
-  sheetObject: GoogleAppsScript.Spreadsheet.Sheet | null,
+  sheetObject: GoogleAppsScript.Spreadsheet.Sheet,
   dataRange: [
     starRow: number,
     starColumn: number,
@@ -11,7 +11,6 @@ const resetSheetFormulas = (
     finalColumn: number
   ]
 ) => {
-  if (sheetObject === null) return;
   const sheetRange = sheetObject.getRange(...dataRange);
 
   sheetRange.getFormulas();
