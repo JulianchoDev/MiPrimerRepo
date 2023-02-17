@@ -5,7 +5,7 @@ interface LoggerSheetItem {
   originName: string;
   originStartRow: number;
   originStartColumn: number;
-  originEndColumn: number;
+  originNumColumns: number;
   targetName: string;
   targetStartColumn: number;
 }

@@ -34,7 +34,7 @@ class LoggerTM {
       .getRange(
         loggerItem.originStartRow,
         loggerItem.originStartColumn,
-        loggerItem.originEndColumn
+        loggerItem.originNumColumns
       )
       .getValues();
 
