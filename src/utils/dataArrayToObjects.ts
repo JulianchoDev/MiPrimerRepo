@@ -1,14 +1,15 @@
 /**
  * Returns array of objects
- * @param dataArray
- * @returns Array of objects
- * Example param
+ *
  * @example
- * [
+ * from
+ *  [
  * ['col1', 'col2', 'col3'],
  * ['val1', 'val2', 'val3']
  * [1, 2, 3]
  * ]
+ *
+ * to
  *
  * [
  *  {
