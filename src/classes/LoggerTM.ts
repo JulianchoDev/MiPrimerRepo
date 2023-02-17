@@ -2,6 +2,7 @@ import LoggerSheetItem from './types/loggerSheetItem';
 import SheetData from './SheetData';
 import ss from '../utils/SpreadsheetApp';
 import logSheetData from '../utils/logSheetData';
+import resetSheetFormulas from '../utils/resetSheetFormulas';
 
 class LoggerTM {
   loggerDataInObjects;
@@ -30,16 +31,20 @@ class LoggerTM {
 
     const originSheetData = new SheetData(originSheet);
 
-    const originValues = originSheetData
-      .getRange(
-        loggerItem.originStartRow,
-        loggerItem.originStartColumn,
-        loggerItem.originNumColumns
-      )
-      .getValues();
+    const originRange = originSheetData.getRange(
+      loggerItem.originStartRow,
+      loggerItem.originStartColumn,
+      loggerItem.originNumColumns
+    );
+
+    const originValues = originRange.getValues();
 
     logSheetData(originValues, targetSheet, loggerItem.targetStartColumn);
-    // reset origin formulas
+
+    const originRangeArray = originRange.getArray();
+    console.log(originRangeArray, originValues);
+
+    //resetSheetFormulas(originSheet, originRangeArray);
   }
 }
 

@@ -1,8 +1,8 @@
 type SheetRange = [
   startRow: number,
   startColumn: number,
-  finalRow: number,
-  finalColumn: number
+  numRows: number,
+  numColumns: number
 ];
 
 export default SheetRange;
