@@ -1,6 +1,5 @@
 import SheetRange from '../types/sheetRange';
 import SheetData from '../classes/SheetData';
-import { Console } from 'console';
 
 /**
  * Copies given values to target sheet
@@ -18,7 +17,9 @@ const logSheetData = (
     originValues.length,
     originValues[0].length,
   ];
+
   targetSheet.getRange(...targetDataRange).setValues(originValues);
+  targetSheet.insertRowAfter(targetSheet.getLastRow());
 };
 
 export default logSheetData;
