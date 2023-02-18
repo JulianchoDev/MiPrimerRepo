@@ -18,7 +18,6 @@ const logSheetData = (
     originValues.length,
     originValues[0].length,
   ];
-  console.log('test', targetDataRange, originValues);
   targetSheet.getRange(...targetDataRange).setValues(originValues);
 };
 

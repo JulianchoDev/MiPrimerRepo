@@ -7,16 +7,7 @@ import LoggerSheetItem from './classes/types/loggerSheetItem';
 import LoggerTM from './classes/LoggerTM';
 
 (global as any).test = () => {
-  const loggerTest = new LoggerTM();
-
-  const loggerSheet =
-    SpreadsheetApp.getActiveSpreadsheet().getSheetByName('logger');
-
-  const loggerSheetItems = new SheetData(loggerSheet!)
-    .getRange()
-    .getDataInObjects<LoggerSheetItem>();
-
-  loggerTest.makeSingleLog(loggerSheetItems![0]);
+  new LoggerTM().logAll();
 };
 
 (global as any).init = init;

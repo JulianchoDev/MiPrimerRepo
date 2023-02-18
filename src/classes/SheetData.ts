@@ -11,18 +11,21 @@ class SheetData {
   /**
    * Returns array with data range coordinates, setting the last row based on the first column
    */
-  public getRange = (startRow = 1, startColumn = 1, endColumn?: number) => {
+  public getRange = (startRow = 1, startColumn = 1, numColumns?: number) => {
     const sheetLastRow = this.getLastRow(startColumn);
     const sheetLastColumn = this.sheetObject.getLastColumn();
 
-    const finalRow = sheetLastRow;
-    const finalColumn = endColumn ? endColumn : sheetLastColumn;
+    const numRows = sheetLastRow - (startRow - 1);
+
+    const finalNumColumns = numColumns
+      ? numColumns
+      : sheetLastColumn - (startColumn - 1);
 
     const finalRange = [
       startRow,
       startColumn,
-      finalRow,
-      finalColumn,
+      numRows,
+      finalNumColumns,
     ] as SheetRange;
 
     return {
@@ -98,12 +101,10 @@ class SheetData {
 
     const sheetColumn = this.sheetObject.getRange(rangeInString);
 
-    let directionDownRange = sheetColumn.getNextDataCell(
-      SpreadsheetApp.Direction.DOWN
-    );
+    let directionDownRange = sheetColumn;
     let lastRowFound = false;
-    let lastRow = 0;
-    const lastRowHistory: number[] = [directionDownRange.getRow()];
+    let lastRow = 1;
+    const lastRowHistory: number[] = [1];
     const directionDownLimit = 10;
 
     for (let index = 0; !lastRowFound; index++) {
@@ -127,7 +128,14 @@ class SheetData {
       }
 
       lastRowHistory.unshift(directionDownRange.getRow());
-      // console.log('log', index, lastRowHistory, directionDownRange.getRow());
+      // console.log(
+      //   'log',
+      //   lastRow,
+      //   this.sheetObject.getSheetName(),
+      //   index,
+      //   lastRowHistory,
+      //   directionDownRange.getRow()
+      // );
     }
 
     return lastRow;

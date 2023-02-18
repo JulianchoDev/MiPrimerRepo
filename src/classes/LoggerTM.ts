@@ -17,10 +17,14 @@ class LoggerTM {
   }
 
   logAll() {
+    console.time('love');
+    console.log(this.loggerDataInObjects);
+
     this.loggerDataInObjects?.forEach((item) => {
       this.makeSingleLog(item);
       console.log('done1');
     });
+    console.timeEnd('love');
   }
 
   makeSingleLog(loggerItem: LoggerSheetItem) {
@@ -42,9 +46,8 @@ class LoggerTM {
     logSheetData(originValues, targetSheet, loggerItem.targetStartColumn);
 
     const originRangeArray = originRange.getArray();
-    console.log(originRangeArray, originValues);
 
-    //resetSheetFormulas(originSheet, originRangeArray);
+    resetSheetFormulas(originSheet, originRangeArray);
   }
 }
 
