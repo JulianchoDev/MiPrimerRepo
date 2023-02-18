@@ -90,30 +90,47 @@ class SheetData {
   /**
    * Returns last row of a given column.
    *
-   * For this function to correctly work, there must not be empty rows between rows.
-   *
-   * Example of an empty row between rows:
-   * @example
-   * [
-   *  [10],
-   *  [1],
-   *  [''],
-   *  ['text']
-   * ]
+   * If number of blank spaces exceeds the limit, it'll throw error
    */
   public getLastRow = (columnNumber = 1) => {
     const columnName = ALPHABET[columnNumber - 1];
-    const rangeInString = `${columnName}1:${columnName}`;
+    const rangeInString = `${columnName}1:${columnName}`; // getRange(A1:A)
 
-    const sheetFirstColumn = this.sheetObject
-      .getRange(rangeInString)
-      .getValues();
+    const sheetColumn = this.sheetObject.getRange(rangeInString);
 
-    const sheetFirstColumnCount = sheetFirstColumn.filter(
-      (row) => row[0] !== ''
-    ).length;
+    let directionDownRange = sheetColumn.getNextDataCell(
+      SpreadsheetApp.Direction.DOWN
+    );
+    let lastRowFound = false;
+    let lastRow = 0;
+    const lastRowHistory: number[] = [directionDownRange.getRow()];
+    const directionDownLimit = 10;
 
-    return sheetFirstColumnCount;
+    for (let index = 0; !lastRowFound; index++) {
+      if (index === directionDownLimit)
+        throw new Error(
+          `There are more than ${directionDownLimit} blank spaces between rows ` +
+            `in "${this.sheetObject.getSheetName()}", column number ${columnNumber}`
+        );
+
+      // re assigns object ref to next direction down "jump"
+      directionDownRange = directionDownRange.getNextDataCell(
+        SpreadsheetApp.Direction.DOWN
+      );
+
+      const endOfColumnReached =
+        directionDownRange.getRow() === lastRowHistory[0];
+
+      if (endOfColumnReached) {
+        lastRowFound = true;
+        lastRow = lastRowHistory[1];
+      }
+
+      lastRowHistory.unshift(directionDownRange.getRow());
+      console.log('log', index, lastRowHistory, directionDownRange.getRow());
+    }
+
+    return lastRow;
   };
 }
 
