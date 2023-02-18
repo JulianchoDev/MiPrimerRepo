@@ -127,7 +127,7 @@ class SheetData {
       }
 
       lastRowHistory.unshift(directionDownRange.getRow());
-      console.log('log', index, lastRowHistory, directionDownRange.getRow());
+      // console.log('log', index, lastRowHistory, directionDownRange.getRow());
     }
 
     return lastRow;
