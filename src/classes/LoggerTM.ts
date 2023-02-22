@@ -44,7 +44,8 @@ class LoggerTM {
     const originRangeArray = originRange.getArray();
     console.log(originRangeArray, originValues);
 
-    //resetSheetFormulas(originSheet, originRangeArray);
+    if (loggerItem.cleanAfter === 1)
+      resetSheetFormulas(originSheet, originRangeArray);
   }
 }
 
