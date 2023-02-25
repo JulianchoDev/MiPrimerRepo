@@ -5,9 +5,9 @@ interface LoggerSheetItem {
   cleanAfter: 0 | 1;
   originName: string;
   originStartRow: number;
-  originStartColumn: number;
-  originNumColumns: number;
+  originStartColumn: string;
+  originEndColumn: string;
   targetName: string;
-  targetStartColumn: number;
+  targetStartColumn: string;
 }
 export default LoggerSheetItem;

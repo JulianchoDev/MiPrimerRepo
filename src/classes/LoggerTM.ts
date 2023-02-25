@@ -3,6 +3,7 @@ import SheetData from './SheetData';
 import ss from '../utils/SpreadsheetApp';
 import logSheetData from '../utils/logSheetData';
 import resetSheetFormulas from '../utils/resetSheetFormulas';
+import ALPHABET from '../constants/alphabet';
 
 class LoggerTM {
   loggerDataInObjects;
@@ -17,14 +18,9 @@ class LoggerTM {
   }
 
   logAll() {
-    console.time('love');
-    console.log(this.loggerDataInObjects);
-
     this.loggerDataInObjects?.forEach((item) => {
       this.makeSingleLog(item);
-      console.log('done1');
     });
-    console.timeEnd('love');
   }
 
   makeSingleLog(loggerItem: LoggerSheetItem) {
@@ -38,13 +34,12 @@ class LoggerTM {
     const originRange = originSheetData.getRange(
       loggerItem.originStartRow,
       loggerItem.originStartColumn,
-      loggerItem.originNumColumns
+      loggerItem.originEndColumn
     );
 
     const originValues = originRange.getValues();
 
     logSheetData(originValues, targetSheet, loggerItem.targetStartColumn);
-
     const originRangeArray = originRange.getArray();
 
     if (loggerItem.cleanAfter === 1)

@@ -11,21 +11,22 @@ class SheetData {
   /**
    * Returns array with data range coordinates, setting the last row based on the first column
    */
-  public getRange = (startRow = 1, startColumn = 1, numColumns?: number) => {
+  public getRange = (startRow = 1, startColumn = 'A', endColumn?: string) => {
     const sheetLastRow = this.getLastRow(startColumn);
     const sheetLastColumn = this.sheetObject.getLastColumn();
 
     const numRows = sheetLastRow - (startRow - 1);
 
-    const finalNumColumns = numColumns
-      ? numColumns
-      : sheetLastColumn - (startColumn - 1);
+    const startColumnNumber = ALPHABET.indexOf(startColumn) + 1;
+    const numColumns = endColumn
+      ? ALPHABET.indexOf(endColumn) + 1 - (startColumnNumber - 1)
+      : sheetLastColumn - (startColumnNumber - 1);
 
     const finalRange = [
       startRow,
-      startColumn,
+      startColumnNumber,
       numRows,
-      finalNumColumns,
+      numColumns,
     ] as SheetRange;
 
     return {
@@ -95,8 +96,7 @@ class SheetData {
    *
    * If number of blank spaces exceeds the limit, it'll throw error
    */
-  public getLastRow = (columnNumber = 1) => {
-    const columnName = ALPHABET[columnNumber - 1];
+  public getLastRow = (columnName = 'A') => {
     const rangeInString = `${columnName}1:${columnName}`; // getRange(A1:A)
 
     const sheetColumn = this.sheetObject.getRange(rangeInString);
@@ -111,7 +111,7 @@ class SheetData {
       if (index === directionDownLimit)
         throw new Error(
           `There are more than ${directionDownLimit} blank spaces between rows ` +
-            `in "${this.sheetObject.getSheetName()}", column number ${columnNumber}`
+            `in "${this.sheetObject.getSheetName()}", column name ${columnName}`
         );
 
       // re assigns object ref to next direction down "jump"
