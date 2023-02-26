@@ -1,3 +1,5 @@
+import LoggerTM from '../../classes/LoggerTM';
+
 /**
  * Sets menu actions to globalThis object in AppsScript
  * so that they are available when setting custom menu items
@@ -16,10 +18,10 @@ export default initMenuActions;
 
 const menuActions = {
   cleaner: function () {
-    return 123;
+    throw new Error('This is a test error');
   },
   logger: function () {
-    throw new Error('This is a test error');
+    new LoggerTM().logAll();
   },
 };
 

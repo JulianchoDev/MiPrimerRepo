@@ -2,24 +2,13 @@ import doOnOpen from './appsScript/doOnOpen';
 import doFunction from './appsScript/doFunction';
 import init from './appsScript/init';
 
-import dataArrayToObjects from './utils/dataArrayToObjects';
+import SheetData from './classes/SheetData';
 import LoggerSheetItem from './classes/types/loggerSheetItem';
-import getSheetDataInObjects from './utils/getSheetDataInObjects';
+import LoggerTM from './classes/LoggerTM';
 
 (global as any).test = () => {
-  // const objectsArr = dataArrayToObjects<LoggerSheetItem>(arrayTest);
-  // console.log(objectsArr, objectsArr[0]);
-
-  const cleanerSheet =
-    SpreadsheetApp.getActiveSpreadsheet().getSheetByName('cleaner');
-  console.log(getSheetDataInObjects(cleanerSheet));
+  new LoggerTM().logAll();
 };
-
-const arrayTest = [
-  ['col1', 'col2', 'col3'],
-  ['val1', 2, 'val3'],
-  ['sasda', 2, 'dsdf'],
-];
 
 (global as any).init = init;
 (global as any).doOnOpen = doOnOpen;

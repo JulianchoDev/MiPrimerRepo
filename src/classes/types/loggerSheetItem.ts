@@ -1,11 +1,13 @@
 interface LoggerSheetItem {
   originId: number;
   targetId: number;
-  run: 0 | 1;
+  include: 0 | 1;
+  cleanAfter: 0 | 1;
   originName: string;
-  originFromColumn: number;
-  originToColumn: number;
-  originLastRow: number;
+  originStartRow: number;
+  originStartColumn: string;
+  originEndColumn: string;
   targetName: string;
+  targetStartColumn: string;
 }
 export default LoggerSheetItem;
