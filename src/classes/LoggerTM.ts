@@ -3,7 +3,6 @@ import SheetData from './SheetData';
 import ss from '../utils/SpreadsheetApp';
 import logSheetData from '../utils/logSheetData';
 import resetSheetFormulas from '../utils/resetSheetFormulas';
-import ALPHABET from '../constants/alphabet';
 
 class LoggerTM {
   loggerDataInObjects;
@@ -40,10 +39,11 @@ class LoggerTM {
     const originValues = originRange.getValues();
 
     logSheetData(originValues, targetSheet, loggerItem.targetStartColumn);
-    const originRangeArray = originRange.getArray();
 
-    if (loggerItem.cleanAfter === 1)
+    if (loggerItem.cleanAfter === 1) {
+      const originRangeArray = originRange.getArray();
       resetSheetFormulas(originSheet, originRangeArray);
+    }
   }
 }
 
