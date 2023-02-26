@@ -5,6 +5,7 @@ import LoggerTM from '../../classes/LoggerTM';
  * so that they are available when setting custom menu items
  * @param globalObject
  */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const initMenuActions = (globalObject: any) => {
   if (!globalObject)
     throw new Error('globalThis must be given to initMenuActions as argument');

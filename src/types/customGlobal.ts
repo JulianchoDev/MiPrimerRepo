@@ -1,1 +1,1 @@
-type CustomGlobal = {};
+// type CustomGlobal = {};
