@@ -1,9 +1,8 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import doOnOpen from './appsScript/doOnOpen';
 import doFunction from './appsScript/doFunction';
 import init from './appsScript/init';
 
-import SheetData from './classes/SheetData';
-import LoggerSheetItem from './classes/types/loggerSheetItem';
 import LoggerTM from './classes/LoggerTM';
 
 (global as any).test = () => {

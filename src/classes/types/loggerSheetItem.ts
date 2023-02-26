@@ -1,4 +1,4 @@
-interface LoggerSheetItem {
+type LoggerSheetItem = {
   originId: number;
   targetId: number;
   include: 0 | 1;
@@ -9,5 +9,5 @@ interface LoggerSheetItem {
   originEndColumn: string;
   targetName: string;
   targetStartColumn: string;
-}
+};
 export default LoggerSheetItem;

@@ -27,6 +27,7 @@ const dataArrayToObjects = <ObjectStructure extends object>(
   const sheetRows = dataArray.slice(1);
 
   const objectsArray = sheetRows.map(function (row) {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     return sheetFirstRow.reduce<any>((accumulator, current, index) => {
       accumulator[current] = row[index];
       return accumulator;
