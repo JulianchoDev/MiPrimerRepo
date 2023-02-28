@@ -1,9 +1,10 @@
 type CleanerSheetItem = {
-  targetId: number;
-  run: 0 | 1;
-  targetName: string;
-  targetLastRow: number;
-  clean: number;
+  sheetId: number;
+  include: 0 | 1;
+  sheetName: string;
+  startRow: number;
+  startColumn: string;
+  endColumn: string;
 };
 
 export default CleanerSheetItem;
