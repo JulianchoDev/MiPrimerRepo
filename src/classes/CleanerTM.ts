@@ -25,16 +25,13 @@ class CleanerTM {
     const sheet = ss.getSheetByName(cleanerItem.sheetName);
     if (!sheet) return;
 
-    const contentSheet = new SheetData(sheet);
+    const sheetData = new SheetData(sheet);
 
-    const valuesRange = contentSheet.getRange(
+    const valuesRange = sheetData.getRange(
       cleanerItem.startRow,
       cleanerItem.startColumn,
       cleanerItem.endColumn
     );
-
-    const sheetValues = valuesRange.getValues();
-    console.log(sheetValues);
 
     const valuesRangeArray = valuesRange.getArray();
     resetSheetFormulas(sheet, valuesRangeArray);
