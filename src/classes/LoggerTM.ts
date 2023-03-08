@@ -3,6 +3,7 @@ import SheetData from './SheetData';
 import ss from '../utils/SpreadsheetApp';
 import logSheetData from '../utils/logSheetData';
 import resetSheetFormulas from '../utils/resetSheetFormulas';
+import getSheetName from '../utils/getSheetName';
 
 class LoggerTM {
   loggerDataInObjects;
@@ -23,8 +24,8 @@ class LoggerTM {
   }
 
   makeSingleLog(loggerItem: LoggerSheetItem) {
-    const originSheet = ss.getSheetByName(loggerItem.originName);
-    const targetSheet = ss.getSheetByName(loggerItem.targetName);
+    const originSheet = ss.getSheetByName(getSheetName(loggerItem.originId));
+    const targetSheet = ss.getSheetByName(getSheetName(loggerItem.targetId));
 
     if (!originSheet || !targetSheet) return;
 

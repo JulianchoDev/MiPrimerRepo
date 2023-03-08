@@ -2,6 +2,7 @@ import CleanerSheetItem from './types/cleanerSheetItem';
 import SheetData from './SheetData';
 import ss from '../utils/SpreadsheetApp';
 import resetSheetFormulas from '../utils/resetSheetFormulas';
+import getSheetName from '../utils/getSheetName';
 
 class CleanerTM {
   cleanerDataInObjects;
@@ -22,7 +23,7 @@ class CleanerTM {
   }
 
   makeSingleClean(cleanerItem: CleanerSheetItem) {
-    const sheet = ss.getSheetByName(cleanerItem.sheetName);
+    const sheet = ss.getSheetByName(getSheetName(cleanerItem.sheetId));
     if (!sheet) return;
 
     const sheetData = new SheetData(sheet);
