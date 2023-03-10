@@ -23,7 +23,8 @@ class CleanerTM {
   }
 
   makeSingleClean(cleanerItem: CleanerSheetItem) {
-    const sheet = ss.getSheetByName(getSheetName(cleanerItem.sheetId));
+    const sheetName = getSheetName(cleanerItem.sheetId);
+    const sheet = ss.getSheetByName(sheetName);
     if (!sheet) return;
 
     const sheetData = new SheetData(sheet);

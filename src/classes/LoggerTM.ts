@@ -24,8 +24,11 @@ class LoggerTM {
   }
 
   makeSingleLog(loggerItem: LoggerSheetItem) {
-    const originSheet = ss.getSheetByName(getSheetName(loggerItem.originId));
-    const targetSheet = ss.getSheetByName(getSheetName(loggerItem.targetId));
+    const originSheetName = getSheetName(loggerItem.originId);
+    const originSheet = ss.getSheetByName(originSheetName);
+
+    const targetSheetName = getSheetName(loggerItem.targetId);
+    const targetSheet = ss.getSheetByName(targetSheetName);
 
     if (!originSheet || !targetSheet) return;
 
