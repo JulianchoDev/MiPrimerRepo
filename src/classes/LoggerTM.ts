@@ -3,6 +3,7 @@ import SheetData from './SheetData';
 import ss from '../utils/SpreadsheetApp';
 import logSheetData from '../utils/logSheetData';
 import resetSheetFormulas from '../utils/resetSheetFormulas';
+import getSheetName from '../utils/getSheetName';
 
 class LoggerTM {
   loggerDataInObjects;
@@ -17,14 +18,26 @@ class LoggerTM {
   }
 
   logAll() {
+    let thereAreErrors = 0;
+
+    this.loggerDataInObjects?.forEach((item) => {
+      if (item.errors !== 0) thereAreErrors = thereAreErrors + 1;
+    });
+
+    if (thereAreErrors !== 0)
+      throw new Error("There is 1 or more error in 'logger'");
+
     this.loggerDataInObjects?.forEach((item) => {
       this.makeSingleLog(item);
     });
   }
 
   makeSingleLog(loggerItem: LoggerSheetItem) {
-    const originSheet = ss.getSheetByName(loggerItem.originName);
-    const targetSheet = ss.getSheetByName(loggerItem.targetName);
+    const originSheetName = getSheetName(loggerItem.originId);
+    const originSheet = ss.getSheetByName(originSheetName);
+
+    const targetSheetName = getSheetName(loggerItem.targetId);
+    const targetSheet = ss.getSheetByName(targetSheetName);
 
     if (!originSheet || !targetSheet) return;
 

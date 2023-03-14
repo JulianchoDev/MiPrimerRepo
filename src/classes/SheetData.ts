@@ -16,6 +16,7 @@ class SheetData {
     const sheetLastColumn = this.sheetObject.getLastColumn();
 
     const numRows = sheetLastRow - (startRow - 1);
+    //if (numRows === 0) return null;
 
     const startColumnNumber = ALPHABET.indexOf(startColumn) + 1;
     const numColumns = endColumn
@@ -105,14 +106,14 @@ class SheetData {
     let lastRowFound = false;
     let lastRow = 1;
     const lastRowHistory: number[] = [1];
-    const directionDownLimit = 10;
+    const directionDownLimit = 5;
 
     for (let index = 0; !lastRowFound; index++) {
-      if (index === directionDownLimit)
-        throw new Error(
-          `There are more than ${directionDownLimit} blank spaces between rows ` +
-            `in "${this.sheetObject.getSheetName()}", column name ${columnName}`
-        );
+      if (index === directionDownLimit) {
+        lastRowFound = true;
+        lastRow = this.sheetObject.getLastRow();
+        break;
+      }
 
       // re assigns object ref to next direction down "jump"
       directionDownRange = directionDownRange.getNextDataCell(

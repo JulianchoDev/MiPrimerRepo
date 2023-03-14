@@ -3,10 +3,10 @@ import doOnOpen from './appsScript/doOnOpen';
 import doFunction from './appsScript/doFunction';
 import init from './appsScript/init';
 
-import LoggerTM from './classes/LoggerTM';
+import CleanerTM from './classes/CleanerTM';
 
 (global as any).test = () => {
-  new LoggerTM().logAll();
+  new CleanerTM().cleanAll();
 };
 
 (global as any).init = init;
