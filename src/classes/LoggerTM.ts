@@ -18,6 +18,15 @@ class LoggerTM {
   }
 
   logAll() {
+    let thereAreErrors = 0;
+
+    this.loggerDataInObjects?.forEach((item) => {
+      if (item.errors !== 0) thereAreErrors = thereAreErrors + 1;
+    });
+
+    if (thereAreErrors !== 0)
+      throw new Error("There is 1 or more error in 'logger'");
+
     this.loggerDataInObjects?.forEach((item) => {
       this.makeSingleLog(item);
     });

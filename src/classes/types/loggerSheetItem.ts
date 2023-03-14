@@ -7,5 +7,6 @@ type LoggerSheetItem = {
   originStartColumn: string;
   originEndColumn: string;
   targetStartColumn: string;
+  errors: number;
 };
 export default LoggerSheetItem;
