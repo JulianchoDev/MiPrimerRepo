@@ -17,6 +17,15 @@ class CleanerTM {
   }
 
   cleanAll() {
+    let thereAreErrors = 0;
+
+    this.cleanerDataInObjects?.forEach((item) => {
+      if (item.errors !== 0) thereAreErrors = thereAreErrors + 1;
+    });
+
+    if (thereAreErrors !== 0)
+      throw new Error("There is 1 or more error in 'cleaner'");
+
     this.cleanerDataInObjects?.forEach((item) => {
       this.makeSingleClean(item);
     });
