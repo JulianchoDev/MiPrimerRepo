@@ -4,6 +4,7 @@ type CleanerSheetItem = {
   startRow: number;
   startColumn: string;
   endColumn: string;
+  errors: number;
 };
 
 export default CleanerSheetItem;
