@@ -7,5 +7,6 @@
     "forceConsistentCasingInFileNames": true,
     "esModuleInterop": true,
     "moduleResolution": "NodeNext"
-  }
+  },
+  "include": ["src/**/*.ts"]
 }

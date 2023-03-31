@@ -12,7 +12,8 @@
     "init": "node init.js",
     "login": "clasp login",
     "test": "jest --watch",
-    "lint": "eslint --ext .js,.ts ."
+    "lint": "eslint --ext .js,.ts .",
+    "type-check": "tsc --noEmit"
   },
   "devDependencies": {
     "@google/clasp": "^2.3.0",
