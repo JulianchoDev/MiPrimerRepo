@@ -1,0 +1,12 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+BRANCH=$(git rev-parse --abbrev-ref HEAD)
+
+if [[ $BRANCH =~ "main" ]]; then
+  echo "Your commit was rejected because you're trying to commit to the main branch"
+  echo "Please create a new branch and commit to that instead."
+  exit 1
+fi
+
+npm run precommit
