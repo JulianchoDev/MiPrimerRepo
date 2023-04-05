@@ -16,7 +16,8 @@ class SheetData {
     const sheetLastColumn = this.sheetObject.getLastColumn();
 
     const numRows = sheetLastRow - (startRow - 1);
-    //if (numRows === 0) return null;
+    console.log('numRows', numRows, sheetLastRow, this.sheetObject.getName());
+    if (numRows === 0) return null;
 
     const startColumnNumber = ALPHABET.indexOf(startColumn) + 1;
     const numColumns = endColumn
@@ -124,19 +125,23 @@ class SheetData {
         directionDownRange.getRow() === lastRowHistory[0];
 
       if (endOfColumnReached) {
+        if (directionDownRange.getValue() !== '') {
+          lastRow = directionDownRange.getRow();
+        } else {
+          lastRow = lastRowHistory[1];
+        }
         lastRowFound = true;
-        lastRow = lastRowHistory[1];
       }
 
       lastRowHistory.unshift(directionDownRange.getRow());
       // console.log(
-      //   'log',
-      //   lastRow,
-      //   this.sheetObject.getSheetName(),
-      //   index,
-      //   lastRowHistory,
-      //   directionDownRange.getRow()
-      // );
+      //'log',
+      //lastRow,
+      //this.sheetObject.getSheetName(),
+      //index,
+      //lastRowHistory,
+      //directionDownRange.getRow(),
+      //  );
     }
 
     return lastRow;

@@ -10,10 +10,12 @@ class CleanerTM {
     const cleanerSheet = ss.getSheetByName('cleaner');
     if (!cleanerSheet) return;
 
-    const cleanerSheetData = new SheetData(cleanerSheet);
-    this.cleanerDataInObjects = cleanerSheetData
-      .getRange()
-      .getDataInObjects<CleanerSheetItem>();
+    const cleanerSheetDataRange = new SheetData(cleanerSheet).getRange();
+
+    if (!cleanerSheetDataRange) throw new Error('There are not cleaner items');
+
+    this.cleanerDataInObjects =
+      cleanerSheetDataRange.getDataInObjects<CleanerSheetItem>();
   }
 
   cleanAll() {
@@ -43,6 +45,8 @@ class CleanerTM {
       cleanerItem.startColumn,
       cleanerItem.endColumn
     );
+
+    if (!valuesRange) return;
 
     const valuesRangeArray = valuesRange.getArray();
     resetSheetFormulas(sheet, valuesRangeArray);
