@@ -11,10 +11,12 @@ class LoggerTM {
     const loggerSheet = ss.getSheetByName('logger');
     if (!loggerSheet) return;
 
-    const loggerSheetData = new SheetData(loggerSheet);
-    this.loggerDataInObjects = loggerSheetData
-      .getRange()
-      .getDataInObjects<LoggerSheetItem>();
+    const loggerSheetDataRange = new SheetData(loggerSheet).getRange();
+
+    if (!loggerSheetDataRange) throw new Error('There are not logger items');
+
+    this.loggerDataInObjects =
+      loggerSheetDataRange.getDataInObjects<LoggerSheetItem>();
   }
 
   logAll() {
@@ -48,6 +50,7 @@ class LoggerTM {
       loggerItem.originStartColumn,
       loggerItem.originEndColumn
     );
+    if (!originRange) return;
 
     const originValues = originRange.getValues();
 
