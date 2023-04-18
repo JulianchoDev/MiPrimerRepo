@@ -102,8 +102,6 @@ class SheetData {
 
     const sheetColumn = this.sheetObject.getRange(rangeInString);
 
-    this.sheetObject.getRange(rangeInString).getValue();
-
     let directionDownRange = sheetColumn;
     let lastRowFound = false;
     let lastRow = 1;
