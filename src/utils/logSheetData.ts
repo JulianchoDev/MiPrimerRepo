@@ -13,8 +13,13 @@ const logSheetData = (
   const targetSheetData = new SheetData(targetSheet);
   const firstColumnTargetSheet = ALPHABET.indexOf(targetStartColumn) + 1;
 
+  const targetLastRow = targetSheetData.getLastRow(targetStartColumn);
+  const targetLastRowValue = targetSheetData.sheetObject
+    .getRange(targetLastRow, firstColumnTargetSheet)
+    .getValue();
+
   const targetDataRange: SheetRange = [
-    targetSheetData.getLastRow(targetStartColumn) + 1,
+    targetLastRowValue ? targetLastRow + 1 : targetLastRow,
     firstColumnTargetSheet,
     originValues.length,
     originValues[0].length,
