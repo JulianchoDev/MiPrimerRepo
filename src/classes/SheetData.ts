@@ -3,7 +3,7 @@ import SheetRange from '../types/sheetRange';
 import dataArrayToObjects from '../utils/dataArrayToObjects';
 
 class SheetData {
-  private sheetObject;
+  public sheetObject;
   constructor(sheetObject: GoogleAppsScript.Spreadsheet.Sheet) {
     this.sheetObject = sheetObject;
   }
@@ -16,7 +16,6 @@ class SheetData {
     const sheetLastColumn = this.sheetObject.getLastColumn();
 
     const numRows = sheetLastRow - (startRow - 1);
-    console.log('numRows', numRows, sheetLastRow, this.sheetObject.getName());
     if (numRows === 0) return null;
 
     const startColumnNumber = ALPHABET.indexOf(startColumn) + 1;
@@ -102,6 +101,8 @@ class SheetData {
     const rangeInString = `${columnName}1:${columnName}`; // getRange(A1:A)
 
     const sheetColumn = this.sheetObject.getRange(rangeInString);
+
+    this.sheetObject.getRange(rangeInString).getValue();
 
     let directionDownRange = sheetColumn;
     let lastRowFound = false;
